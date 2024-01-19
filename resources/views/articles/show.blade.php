@@ -30,11 +30,11 @@
     @endunless
 
     <ul>
-    @foreach ($article->comments as $comment)
-        <li>
-            <p>{{ $comment->body  }}</p>
-        </li>
-    @endforeach
+        @foreach ($article->comments as $comment)
+            <li>
+                <p>{{ $comment->body  }}</p>
+            </li>
+        @endforeach
     </ul>
 
 @endsection

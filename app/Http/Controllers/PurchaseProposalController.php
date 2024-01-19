@@ -17,17 +17,6 @@ class PurchaseProposalController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Article $article)
-    {
-        return view('purchase-proposals.create', [
-            'article' => $article,
-            'proposal' => new PurchaseProposal()
-        ]);
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Article $article, Request $request)
@@ -39,6 +28,17 @@ class PurchaseProposalController extends Controller
         ]);
         $article->purchaseProposals()->create($validated);
         return redirect()->route('articles.show', $article);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Article $article)
+    {
+        return view('purchase-proposals.create', [
+            'article' => $article,
+            'proposal' => new PurchaseProposal()
+        ]);
     }
 
     /**
