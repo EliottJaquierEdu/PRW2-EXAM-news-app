@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal("amount",9, 2);
             $table->string('email', 255);
             $table->foreignId('article_id');
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
     }
 
