@@ -3,7 +3,7 @@
 @enderror
 <label>
     Email :
-    <input type="email" name="email" value="{{ $proposal->email }}">
+    <input type="email" name="email" required value="{{ $proposal->email }}">
 </label>
 <br>
 @error('amount')
@@ -11,5 +11,5 @@
 @enderror
 <label>
     Montant
-    <input type="number" name="amount" min="1" step=".05" value="{{ $proposal->amount }}"> CHF
+    <input type="number" name="amount" min="1" max="9999999" required step=".05" value="{{ $proposal->amount }}"> CHF
 </label>
