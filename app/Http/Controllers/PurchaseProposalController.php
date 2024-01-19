@@ -21,7 +21,10 @@ class PurchaseProposalController extends Controller
      */
     public function create(Article $article)
     {
-        //
+        return view('purchase-proposals.create', [
+            'article' => $article,
+            'proposal' => new PurchaseProposal()
+        ]);
     }
 
     /**
@@ -29,7 +32,9 @@ class PurchaseProposalController extends Controller
      */
     public function store(Article $article, Request $request)
     {
-        //
+        //TODO : Discuss about the possibility to block purchase proposal for archived articles
+        $article->purchaseProposals()->create($request->all());
+        return redirect()->route('articles.show', $article);
     }
 
     /**
