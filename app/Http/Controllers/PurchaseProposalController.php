@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseProposalRequest;
 use App\Models\Article;
 use App\Models\PurchaseProposal;
 use Illuminate\Http\Request;
@@ -19,14 +20,10 @@ class PurchaseProposalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Article $article, Request $request)
+    public function store(Article $article, PurchaseProposalRequest $request)
     {
         //TODO : Discuss about the possibility to block purchase proposal for archived articles
-        $validated = $request->validate([
-            'email' => 'required|max:255',
-            'amount' => 'required|numeric|min:1|max:9999999',
-        ]);
-        $article->purchaseProposals()->create($validated);
+        $article->purchaseProposals()->create($request->all());
         return redirect()->route('articles.show', $article);
     }
 
