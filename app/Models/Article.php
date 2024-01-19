@@ -2,16 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $fillable = ['title', 'body', 'published_at', 'archived_at'];
+    protected $fillable = ['title', 'body', 'published_at', 'archived_at', 'views'];
 
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function scopeOrderByViewCount(Builder $query)
+    {
+        $query->orderBy('views', 'DESC');
     }
 
     public function scopeUnarchived(Builder $query)
@@ -27,6 +32,11 @@ class Article extends Model
     public function scopeSearchBody(Builder $query, $search)
     {
         $query->where('body', 'LIKE', "%$search%");
+    }
+
+    public function incrementViewCount()
+    {
+        $this->update(['views' => $this->views + 1]);
     }
 
     public function archive()

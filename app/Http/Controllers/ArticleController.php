@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -18,6 +17,16 @@ class ArticleController extends Controller
             $articles = $articles->searchBody(request()->get('search'));
 
         return view('articles.index', ['articles' => $articles->get()]);
+    }
+
+    /**
+     *Display a listing of the most viewed articles.
+     */
+    public function indexTopViewedArticles()
+    {
+        //TODO : Discuss if articles displayed are all or only taken from Article::unarchived()
+        $articles = Article::orderByViewCount()->take(5);
+        return view('articles.index', ['articles' => $articles->get(), 'showViewCount' => true]);
     }
 
     /**
@@ -42,6 +51,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $article->incrementViewCount();
         return view('articles.show', compact('article'));
     }
 
