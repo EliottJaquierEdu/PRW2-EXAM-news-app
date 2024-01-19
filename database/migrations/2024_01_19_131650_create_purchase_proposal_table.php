@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchase_proposal', function (Blueprint $table) {
+        Schema::create('purchase_proposals', function (Blueprint $table) {
             $table->id();
             //TODO : Define whether bids go beyond 9'999'999.99 CHF
             $table->decimal("amount",9, 2);
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchase_proposal');
+        Schema::dropIfExists('purchase_proposals');
     }
 };
