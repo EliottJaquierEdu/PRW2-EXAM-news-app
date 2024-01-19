@@ -14,6 +14,11 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function purchaseProposals()
+    {
+        return $this->hasMany(PurchaseProposal::class);
+    }
+
     public function scopeOrderByViewCount(Builder $query)
     {
         $query->orderBy('views', 'DESC');
