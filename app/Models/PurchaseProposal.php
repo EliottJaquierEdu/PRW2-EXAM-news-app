@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class PurchaseProposal extends Model
 {
@@ -31,5 +32,13 @@ class PurchaseProposal extends Model
     public function article()
     {
         return $this->belongsTo(Article::class);
+    }
+
+    /**
+     * Order by the best amount
+     */
+    public function scopeOrderByBestAmount(Builder $query)
+    {
+        $query->orderBy('amount', 'DESC');
     }
 }

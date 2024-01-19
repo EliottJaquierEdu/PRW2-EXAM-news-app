@@ -14,6 +14,9 @@
     <a href="{{ route('articles.edit', $article) }}">Modifier cet article</a>
 
     <h3>Enchères</h3>
+    @if($bestProposal)
+        <p>Date de la meilleure proposition : {{ $bestProposal->created_at }}</p>
+    @endif
     <a href="{{ route('articles.auctions.create', $article) }}">Enchérir</a>
 
     <h3>Commentaires</h3>
