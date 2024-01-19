@@ -13,6 +13,9 @@
 
     <a href="{{ route('articles.edit', $article) }}">Modifier cet article</a>
 
+    <h3>Enchères</h3>
+    <a href="{{ route('articles.auctions.create', $article) }}">Enchérir</a>
+
     <h3>Commentaires</h3>
 
     @unless ($article->archived_at)
