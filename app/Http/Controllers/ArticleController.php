@@ -20,6 +20,16 @@ class ArticleController extends Controller
     }
 
     /**
+     *Display a listing of the most viewed articles.
+     */
+    public function indexTopViewedArticles()
+    {
+        //TODO : Discuss if articles displayed are all or only taken from Article::unarchived()
+        $articles = Article::orderByViewCount()->take(5);
+        return view('articles.index', ['articles' => $articles->get(), 'showViewCount' => true]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
