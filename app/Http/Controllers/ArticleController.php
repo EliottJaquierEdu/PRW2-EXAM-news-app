@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -42,6 +41,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $article->incrementViewCount();
         return view('articles.show', compact('article'));
     }
 

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
@@ -27,6 +27,11 @@ class Article extends Model
     public function scopeSearchBody(Builder $query, $search)
     {
         $query->where('body', 'LIKE', "%$search%");
+    }
+
+    public function incrementViewCount()
+    {
+        $this->update(['views' => $this->views + 1]);
     }
 
     public function archive()
