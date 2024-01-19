@@ -52,7 +52,8 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $article->incrementViewCount();
-        return view('articles.show', compact('article'));
+        $bestProposal = $article->purchaseProposals()->orderByBestAmount()->first();
+        return view('articles.show', compact('article', 'bestProposal'));
     }
 
     /**
