@@ -16,6 +16,7 @@ return new class extends Migration
             //TODO : Define whether bids go beyond 9'999'999.99 CHF
             $table->decimal("amount",9, 2);
             $table->string('email', 255);
+            $table->foreignId('article_id');
             $table->timestamp('created_at');
         });
     }
