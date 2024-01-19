@@ -33,7 +33,11 @@ class PurchaseProposalController extends Controller
     public function store(Article $article, Request $request)
     {
         //TODO : Discuss about the possibility to block purchase proposal for archived articles
-        $article->purchaseProposals()->create($request->all());
+        $validated = $request->validate([
+            'email' => 'required|max:255',
+            'amount' => 'required|numeric|min:1|max:9999999',
+        ]);
+        $article->purchaseProposals()->create($validated);
         return redirect()->route('articles.show', $article);
     }
 
